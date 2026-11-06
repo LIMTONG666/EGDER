@@ -24,12 +24,24 @@ REGISTRATION = """    if editor_name == 'egder':
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('checkout', type=Path)
+    parser.add_argument('--runtime-only', action='store_true',
+                        help='Prepare the evaluation runtime without registering EGDER.')
     args = parser.parse_args()
     checkout = args.checkout.resolve()
     revision = subprocess.check_output(
         ['git', '-C', str(checkout), 'rev-parse', 'HEAD'], text=True).strip()
     if revision != PINNED_REVISION:
-        raise RuntimeError('Expected the pinned runtime revision.')
+        changes = subprocess.check_output(
+            ['git', '-C', str(checkout), 'status', '--porcelain', '--untracked-files=no'],
+            text=True).strip()
+        if changes:
+            raise RuntimeError('The runtime has local changes; preserve them before preparing it.')
+        subprocess.run(
+            ['git', '-C', str(checkout), 'checkout', '--quiet', '--detach', PINNED_REVISION],
+            check=True)
+    if args.runtime_only:
+        print('Evaluation runtime ready.')
+        return
     package = Path(__file__).resolve().parent
     loader = checkout/'utils/__init__.py'
     original = loader.read_text()

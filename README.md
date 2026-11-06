@@ -23,10 +23,10 @@ Use Python 3.10 and a CUDA-compatible PyTorch installation.
 ```bash
 pip install -r requirements.txt
 git clone https://github.com/qizhou000/LiveEdit.git ../runtime
-git -C ../runtime checkout 3615a37b05294509f411df045621940f276a5e6b
+python install_egder.py ../runtime --runtime-only
 ```
 
-The pinned checkout provides the shared backbone and evaluation runtime.
+The preparation command selects the compatible shared backbone and evaluation runtime.
 Provide the BLIP2 OPT-2.7B backbone, MMEdit EVQA data, and compatible editor
 checkpoints separately. The data root must contain `vqa/vqa_eval.json` and
 `images/`. Model weights and datasets are not included.
@@ -54,11 +54,10 @@ under a new run directory within the configured output path.
 
 ## Training integration
 
-To register EGDER for training, use a separate pinned runtime checkout:
+To register EGDER for training, use a separate runtime checkout:
 
 ```bash
 git clone https://github.com/qizhou000/LiveEdit.git ../training-runtime
-git -C ../training-runtime checkout 3615a37b05294509f411df045621940f276a5e6b
 python install_egder.py ../training-runtime
 ```
 
@@ -66,9 +65,12 @@ Select `--editor_name egder` in that runtime's training entrypoint.
 
 ## Citation
 
-**Evidence Guided Dual Expert Memory with Joint Routing for VLLMs Online Correction**
-
-Lintong Zhang, Yearang Lee, Seong-Whan Lee\*
+```bibtex
+@misc{Zhang_EGDER,
+  author = {Zhang, Lintong and Lee, Yearang and Lee, Seong-Whan},
+  title = {Evidence Guided Dual Expert Memory with Joint Routing for VLLMs Online Correction}
+}
+```
 
 Dept. of Artificial Intelligence, Korea University, Seoul, Korea
 
@@ -76,9 +78,16 @@ Dept. of Artificial Intelligence, Korea University, Seoul, Korea
 
 ### Code contribution acknowledgment
 
-Code contributions from [LiveEdit](https://github.com/qizhou000/LiveEdit) are acknowledged
-with its paper: Qizhou Chen et al.,
-[Lifelong Knowledge Editing for Vision Language Models with Low-Rank Mixture-of-Experts](https://openaccess.thecvf.com/content/CVPR2025/html/Chen_Lifelong_Knowledge_Editing_for_Vision_Language_Models_with_Low-Rank_Mixture-of-Experts_CVPR_2025_paper.html),
-CVPR 2025, pp. 9455-9466.
+We acknowledge code contributions from [LiveEdit](https://github.com/qizhou000/LiveEdit):
+
+```bibtex
+@InProceedings{Chen_2025_CVPR,
+  author = {Chen, Qizhou and Wang, Chengyu and Wang, Dakan and Zhang, Taolin and Li, Wangyue and He, Xiaofeng},
+  title = {Lifelong Knowledge Editing for Vision Language Models with Low-Rank Mixture-of-Experts},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year = {2025},
+  pages = {9455--9466}
+}
+```
 
 The upstream copyright and permission notice are preserved in `LICENSE.upstream`.
