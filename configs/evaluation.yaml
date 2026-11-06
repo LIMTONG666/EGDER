@@ -1,0 +1,8 @@
+# Paths are relative to the EGDER repository unless absolute.
+runtime: ../runtime
+backbone: /path/to/blip2-opt-2.7b
+data_root: /path/to/easy-edit-mm
+egder_checkpoint: /path/to/egder/checkpoint.pt
+baseline_checkpoint: /path/to/baseline/checkpoint.pt
+output: eval_results
+gpu: 2
