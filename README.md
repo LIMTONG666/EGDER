@@ -14,7 +14,7 @@ quality estimation, and joint sparse routing for online multimodal knowledge edi
 - [egder/egder.py](egder/egder.py): the `EGDER` editor, expert memory, editing, and training.
 - [egder/modules.py](egder/modules.py): visual localization, dual expert generation, quality heads, and joint routing.
 - [configs/egder/blip2-opt-2.7b.yaml](configs/egder/blip2-opt-2.7b.yaml): the editor configuration.
-- [evaluate.py](evaluate.py): the default EGDER and LiveEdit comparison command.
+- [evaluate.py](evaluate.py): the default performance evaluation command.
 
 ## Setup
 
