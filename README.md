@@ -4,6 +4,8 @@ Code for **Evidence Guided Dual Expert Memory with Joint Routing for VLLMs Onlin
 
 ![Overview of EGDER](assets/egder_overview.png)
 
+[PDF version](assets/framework.pdf)
+
 EGDER combines evidence-guided visual localization, paired support/suppress experts,
 quality estimation, and joint sparse routing for online multimodal knowledge editing.
 
